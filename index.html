@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JOGO DA VELHA</title>
+        <link rel="stylesheet" href="./styles.css" />
+        <link rel="stylesheet" href="./assets/css/responsive.css">
+        <script defer src="./script.js"></script>
+    </head>
+
+    <body>
+        <div id="modal" class="modal__restart-game">
+            <button class="btn__restart-game" onclick='restartGame()'>Reiniciar o jogo!</button>
+        </div>
+        
+        <div class="container">
+            <h1 class="title">Jogo da Velha</h1>
+            <div class="table">
+                <div onclick= 'currentTableBox(this)'  
+                class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div> 
+
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div> 
+
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+                <div onclick= 'currentTableBox(this)' class="table__box"></div>
+            </div>
+
+            <div class="controls">
+                <label onclick='clickPlayer1()'  class="controls__label btn__player1" for="player1">
+                    Jogador 1
+                </label>
+                <input id="player1" class="controls__input " type="radio" name="player" value="X" />
+                <label onclick='clickPlayer2()' class="controls__label btn__player2" for="player2">
+                    Jogador 2
+                </label>
+                <input id="player2" class="controls__input" type="radio" name="player" value="O" />
+            </div>
+
+            <p class="result"></p>
+        </div>
+
+
+
+    </body>
+
+</html>
