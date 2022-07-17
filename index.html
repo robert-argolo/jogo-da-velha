@@ -13,6 +13,7 @@
 
     <body>
         <div id="modal" class="modal__restart-game">
+            <p class="modal__player-win">O jogador 1 Ganhou. Parabens!</p>
             <button class="btn__restart-game" onclick='restartGame()'>Reiniciar o jogo!</button>
         </div>
         
@@ -34,17 +35,16 @@
             </div>
 
             <div class="controls">
-                <label onclick='clickPlayer1()'  class="controls__label btn__player1" for="player1">
+                <label  class="controls__label btn__player1" for="player1">
                     Jogador 1
                 </label>
                 <input id="player1" class="controls__input " type="radio" name="player" value="X" />
-                <label onclick='clickPlayer2()' class="controls__label btn__player2" for="player2">
+                <label class="controls__label btn__player2" for="player2">
                     Jogador 2
                 </label>
                 <input id="player2" class="controls__input" type="radio" name="player" value="O" />
             </div>
 
-            <p class="result"></p>
         </div>
 
 

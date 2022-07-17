@@ -20,4 +20,8 @@
         width: 50px;
         padding: 10px;
     }
+
+    .modal__player-win{
+        text-align: center;
+    }
 }

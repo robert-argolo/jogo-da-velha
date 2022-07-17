@@ -3,7 +3,7 @@ const btnPlayer1 = document.querySelector('.btn__player1');
 const btnPlayer2 = document.querySelector('.btn__player2');
 const tableBox = document.querySelectorAll('.table__box');
 const result = document.querySelector('.result');
-// const modalRestartGame = document.querySelector('modal__restart-game');
+const modalMsgPlayWin = document.querySelector('.modal__player-win');
 
 const modalRestartGame = document.querySelector('.modal__restart-game');
 
@@ -12,7 +12,8 @@ let timeCounterPlayer1 = 0;
 let timeCounterPlayer2 = 0;
 let currentPlayer1 = true;
 let currentPlayer2 = false;
-clickPlayer1()//para iniciar com inicia com o jogador 1
+let numberOfMoves =0;
+changeCurrentPlayer()//para iniciar com inicia com o jogador 1
 
 //variáveis de cada posição do table box
 const a1 = 0;
@@ -27,18 +28,15 @@ const c3 = 8;
 
 
 //função mudar o botão do player de cor ao ser apertado
-function clickPlayer1(){
+function changeCurrentPlayer(){
 
     if(btnPlayer1 && currentPlayer1){
         btnPlayer2.classList.remove('active');
         btnPlayer1.classList.add('active');
         currentPlayer1=false;
         currentPlayer2=true;
-        
     }
-}
-function clickPlayer2(){
-    if(btnPlayer2 && currentPlayer2 ){
+    else if(btnPlayer2 && currentPlayer2 ){
         btnPlayer1.classList.remove('active');
         btnPlayer2.classList.add('active');
         currentPlayer1=true;
@@ -47,24 +45,26 @@ function clickPlayer2(){
     }
 }
 
+
 // função para escrever o x e controlar o nº de jogadas
 function currentTableBox(element){
     
     if(!currentPlayer1 && timeCounterPlayer1<=timeCounterPlayer2 && element.innerText==''){
         writeX(element)
         verifyPlayWin();
-        clickPlayer2();
+        changeCurrentPlayer()
 
     }
     if(!currentPlayer2 && timeCounterPlayer2 < timeCounterPlayer1 && element.innerText==''){
         writeO(element);
         verifyPlayWin();
-        clickPlayer1();
+        changeCurrentPlayer()
     }
     
 }
 
 function verifyPlayWin(){
+    tiedGame();
     verifyRow1();
     verifyRow2();
     verifyRow3();
@@ -74,6 +74,7 @@ function verifyPlayWin(){
     verifyLeftDiagonal();
     verifyRightDiagonal();
     openModalRestartGame();
+    
 }
 
 
@@ -152,14 +153,14 @@ if(tableBox[a3].innerText =='X' && tableBox[b2].innerText =='X' && tableBox[c1].
         }
 }
 function msgPlay1Win(){
-    result.innerText = 'O jogador 1 Ganhou. Parabens!'  
+    modalMsgPlayWin.innerText = 'O jogador 1 Ganhou. Parabens!'  
 }
 function msgPlay2Win(){
-    result.innerText = 'O jogador 2 Ganhou. Parabens!'  
+    modalMsgPlayWin.innerText = 'O jogador 2 Ganhou. Parabens!'  
 }
 
 function openModalRestartGame(){
-    if(result.innerText == 'O jogador 2 Ganhou. Parabens!' || result.innerText == 'O jogador 1 Ganhou. Parabens!'){
+    if(modalMsgPlayWin.innerText == 'O jogador 2 Ganhou. Parabens!' || modalMsgPlayWin.innerText == 'O jogador 1 Ganhou. Parabens!'){
         modalRestartGame.style.display='flex'
 
     }
@@ -170,12 +171,14 @@ function restartGame(){
     timeCounterPlayer2 = 0;
     currentPlayer1 = true;
     currentPlayer2 = false;
+    numberOfMoves = 0;
 
-        clearAllTableBox()
-        clearMsgPlayWin()
-        closeModalRestartGame()
 
-        clickPlayer1();
+        clearAllTableBox();
+        clearMsgPlayWin();
+        closeModalRestartGame();
+
+        changeCurrentPlayer();
         
 }
 
@@ -188,14 +191,23 @@ function clearAllTableBox(){
     }
 }
 function clearMsgPlayWin(){
-    result.innerText = "";
+    modalMsgPlayWin.innerText = "";
 }
 
 function writeX(element){
     element.innerText = 'X';
     timeCounterPlayer1++;
+    numberOfMoves++
 }
 function writeO(element){
     element.innerText = 'O';
     timeCounterPlayer2++;
+    numberOfMoves++
+}
+function tiedGame(){
+    if(numberOfMoves >=9){
+        restartGame();
+        changeCurrentPlayer();
+
+    }
 }
