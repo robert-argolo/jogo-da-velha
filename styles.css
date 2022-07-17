@@ -109,6 +109,8 @@
 all: unset;
 box-sizing: border-box;
 
+text-align: center;
+
 margin: 2rem;
 
 font-size: 2rem;
