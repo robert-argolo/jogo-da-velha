@@ -153,14 +153,16 @@ if(tableBox[a3].innerText =='X' && tableBox[b2].innerText =='X' && tableBox[c1].
         }
 }
 function msgPlay1Win(){
-    modalMsgPlayWin.innerText = 'O jogador 1 Ganhou. Parabens!'  
+    modalMsgPlayWin.innerText = 'O jogador 1 Ganhou. Parabens!' 
+    modalMsgPlayWin.style.backgroundColor="green" 
 }
 function msgPlay2Win(){
     modalMsgPlayWin.innerText = 'O jogador 2 Ganhou. Parabens!'  
+    modalMsgPlayWin.style.backgroundColor="green"
 }
 
 function openModalRestartGame(){
-    if(modalMsgPlayWin.innerText == 'O jogador 2 Ganhou. Parabens!' || modalMsgPlayWin.innerText == 'O jogador 1 Ganhou. Parabens!'){
+    if(modalMsgPlayWin.innerText == 'O jogador 2 Ganhou. Parabens!' || modalMsgPlayWin.innerText == 'O jogador 1 Ganhou. Parabens!' || modalMsgPlayWin.innerText == 'Jogo terminou em empate!'){
         modalRestartGame.style.display='flex'
 
     }
@@ -206,8 +208,8 @@ function writeO(element){
 }
 function tiedGame(){
     if(numberOfMoves >=9){
-        restartGame();
-        changeCurrentPlayer();
-
+        modalMsgPlayWin.innerText = 'Jogo terminou em empate!';
+        modalMsgPlayWin.style.backgroundColor="gray"
+        openModalRestartGame();
     }
 }
